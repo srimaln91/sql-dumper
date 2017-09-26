@@ -1,0 +1,22 @@
+{
+    "name": "srimaln91/wp-git",
+    "description": "A PHP console application to execute batch of shell commands to versioning wordpress database and source code",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "H.M.S.Nishantha",
+            "email": "srimaln91@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.3",
+        "symfony/process": "^3.3",
+        "pimple/pimple": "~3.0",
+        "symfony/yaml": "^3.3"
+    },
+    "autoload": {
+        "psr-4": { 
+            "App\\": "src/" 
+        }
+    }
+}

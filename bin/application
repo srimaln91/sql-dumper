@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Pimple\Container;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use App\Commands\DumpDatabase;
+use App\Lib\Config;
+use App\Database\Connection;
+
+$cliApp = new Application();
+
+$container = new Container();
+
+$container['config'] = function($container){
+    return new Config($container);
+};
+
+$container['connection'] = function($container){
+    
+    $config = $container->get('config');
+    $connection = new Connection();
+    $connection->setHostName($config->get('database.hostname'));
+    $connection->setUserName($config->get('database.username'));
+    $connection->setDatabase($config->get('database.database'));
+    $connection->setPassword($config->get('database.password'));
+    
+    return $connection;
+};
+
+$cliApp->add(new DumpDatabase($container));
+
+$cliApp->run();

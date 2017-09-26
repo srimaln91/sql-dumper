@@ -8,7 +8,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Yaml\Yaml;
-use App\Lib\Runner;
+use App\Database\Connection;
+use App\Database\DumpService;
 
 class DumpDatabase extends Command 
 {
@@ -21,8 +22,8 @@ class DumpDatabase extends Command
     {
         parent::__construct();
         $this->processBuilder = new ProcessBuilder();
-        $this->config = $container->get('config');
-        $this->connection = $container->get('connection');
+        $this->config = $container['config'];
+        $this->connection = $container['connection'];
     }
 
     protected function configure()
@@ -39,18 +40,9 @@ class DumpDatabase extends Command
         if(!file_exists($this->config->get('directory.db'))){
             mkdir($this->config->get('directory.db'));
         }
-        
-        // $this->processBuilder->setPrefix($this->config->get('binaries.mysql'))
-        //     ->setArguments(['-h', $this->config->get('database.host')] )
-        //     ->setArguments(['-u', $this->config->get('database.user')] )
-        //     ->setArguments([ $this->config->get('database.database')] )
-        //     ->setArguments(['-p', $this->config->get('database.password')] )
-        //     ->setArguments(['--add-drop-table'] )
-        //     ->setArguments(['>', $this->config->get('directory.db')] );
 
-        $runner = new Runner($input, $output, $this->processBuilder);
-        $runner->run();
+        $dumpService = new DumpService($this->connection, $this->config->get('directory.db'));
+        $dumpService->dump();
 
     }
-
 }

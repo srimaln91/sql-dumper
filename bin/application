@@ -21,7 +21,7 @@ $container['config'] = function($container){
 
 $container['connection'] = function($container){
     
-    $config = $container->get('config');
+    $config = $container['config'];
     $connection = new Connection();
     $connection->setHostName($config->get('database.hostname'));
     $connection->setUserName($config->get('database.username'));

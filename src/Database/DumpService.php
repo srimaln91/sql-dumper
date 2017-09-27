@@ -39,15 +39,15 @@ class DumpService extends DatabaseService
         }
 
         //Remove comments if we are going to overwrite existing backups
-        if (! FileSystem::isDirEmpty($this->dumpPath) ) {
-            throw new NonEmptyDumpFolderException($this->dumpPath." is not empty.");
-            return false;
-        }
+        // if (! FileSystem::isDirEmpty($this->dumpPath) ) {
+        //     throw new NonEmptyDumpFolderException($this->dumpPath." is not empty.");
+        //     return false;
+        // }
         
         foreach($tables as $table){
             
             $command = sprintf(
-                '/usr/bin/mysqldump --user="%s" --password="%s" --host="%s" --lock-all-tables "%s" "%s" > "%s"',
+                '/usr/bin/mysqldump --user="%s" --password="%s" --host="%s" --lock-all-tables --skip-dump-date "%s" "%s" > "%s"',
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),

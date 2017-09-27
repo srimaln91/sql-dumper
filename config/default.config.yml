@@ -1,7 +1,7 @@
 ---
 database:
   hostname: localhost
-  database: "dump-test"
+  database: "wp-test"
   username: root
   password: "123"
   port: 3306
@@ -11,4 +11,4 @@ binaries:
   mysql: "/usr/bin/mysql"
   git: "/usr/bin/git"
 directory:
-  db: "/var/www/wp-db-backup/db/"
+  db: "/var/www/wordpress/db/"

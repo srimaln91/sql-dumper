@@ -38,6 +38,5 @@ class RestoreService extends DatabaseService
 
         }
 
-        $process = new Process($command);
     }
 }

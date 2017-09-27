@@ -7,9 +7,10 @@ use Symfony\Component\Console\Application;
 use Pimple\Container;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use App\Commands\DumpDatabase;
 use App\Lib\Config;
 use App\Database\Connection;
+use App\Commands\DumpDatabase;
+use App\Commands\RestoreDatabase;
 
 $cliApp = new Application();
 
@@ -31,6 +32,8 @@ $container['connection'] = function($container){
     return $connection;
 };
 
+//Attache Commands
 $cliApp->add(new DumpDatabase($container));
+$cliApp->add(new RestoreDatabase($container));
 
 $cliApp->run();

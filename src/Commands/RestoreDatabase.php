@@ -7,14 +7,16 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use App\Database\Connection;
-use App\Database\DumpService;
+use App\Database\RestoreService;
+use App\Lib\FileSystem;
 
-class DumpDatabase extends Command 
+class RestoreDatabase extends Command
 {
     /**
      * @var App\Lib\Config
      */
     protected $config;
+
 
     /**
      * @var App\Database\Connection
@@ -23,7 +25,7 @@ class DumpDatabase extends Command
 
 
     /**
-     * @param Container $container
+     * @param Pimple\Container $container
      */
     public function __construct(Container $container)
     {
@@ -34,20 +36,20 @@ class DumpDatabase extends Command
 
 
     /**
-     * Command configuration
+     * Command Configuration
      *
      * @return void
      */
     protected function configure()
     {
-        $this->setName('db:dump')
-            ->setDescription("Create a database dump")
-            ->setHelp("This command allows you to create a dump of current database");
+        $this->setName('db:restore')
+        ->setDescription("Restore a database dump")
+        ->setHelp("This command allows you to restore a database dump");
     }
 
 
     /**
-     * Command Execution
+     * Execute a command
      *
      * @param InputInterface $input
      * @param OutputInterface $output
@@ -55,21 +57,21 @@ class DumpDatabase extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $config = $this->config->get('database.password');
 
-        if(!file_exists($this->config->get('directory.db'))){
-            mkdir($this->config->get('directory.db'));
+        if (FileSystem::isDirEmpty($this->config->get('directory.db'))){
+
+            $output->writeln("<error>Dump directory is empty!</error>");
+            return;
         }
 
-        $dumpService = new DumpService($this->connection, $this->config->get('directory.db'));
+        $restoreService = new RestoreService($this->connection, $this->config->get('directory.db'));
         
         try{
-            $dumpService->dump();
-            $output->writeln("<info>Successfully created a backup</info>");
+            $restoreService->restore();
+            $output->writeln("<info>Successfully restored.</info>");
         }
-        catch (Exception $e){
-            $output->writeln("<error>Operation Unsuccessful</error>");
+        catch(Exception $e){
+            $output->writeln("<error>{ $e->getMessage() }</error>");
         }
-
     }
 }

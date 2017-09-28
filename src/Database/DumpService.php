@@ -25,7 +25,7 @@ class DumpService extends DatabaseService
             $this->connection->getDatabase()
         );
 
-        $process = new Process($this->binaries['mysqldump'].' '.$args);
+        $process = new Process($this->binaries['mysql'].' '.$args);
         $process->run();
         $response =  $process->getOutput();
 
@@ -46,8 +46,8 @@ class DumpService extends DatabaseService
         
         foreach($tables as $table){
             
-            $command = sprintf(
-                '/usr/bin/mysqldump --user="%s" --password="%s" --host="%s" --lock-all-tables --skip-dump-date "%s" "%s" > "%s"',
+            $args = sprintf(
+                '--user="%s" --password="%s" --host="%s" --lock-all-tables --skip-dump-date "%s" "%s" > "%s"',
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),
@@ -56,7 +56,7 @@ class DumpService extends DatabaseService
                 $this->dumpPath.$table.'.sql'
             );
 
-            $process = new Process($command);
+            $process = new Process($this->binaries['mysqldump'].' '.$args);
             $process->run();
         }
     }

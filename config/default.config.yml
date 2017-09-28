@@ -5,8 +5,6 @@ database:
   username: root
   password: "123"
   port: 3306
-dumps:
-  dirname: db
 binaries:
   mysql: "/usr/bin/mysql"
   git: "/usr/bin/git"

@@ -61,7 +61,7 @@ class DumpDatabase extends Command
             mkdir($this->config->get('directory.db'));
         }
 
-        $dumpService = new DumpService($this->connection, $this->config->get('directory.db'));
+        $dumpService = new DumpService($this->connection, $this->config->get('binaries'), $this->config->get('directory.db'));
         
         try{
             $dumpService->dump();

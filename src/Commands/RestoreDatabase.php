@@ -64,7 +64,7 @@ class RestoreDatabase extends Command
             return;
         }
 
-        $restoreService = new RestoreService($this->connection, $this->config->get('directory.db'));
+        $restoreService = new RestoreService($this->connection, $this->config->get('binaries'), $this->config->get('directory.db'));
         
         try{
             $restoreService->restore();

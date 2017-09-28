@@ -17,16 +17,23 @@ class DatabaseService
      */
     protected $dumpPath;
 
+    /**
+     * @var array
+     */
+    protected $binaries;
+
 
     /**
      * @param Connection $connection
      * @param string $dumpPath
      */
-    public function __construct(Connection $connection, $dumpPath)
+    public function __construct(Connection $connection, Array $binaries, $dumpPath)
     {
 
         $this->connection = $connection;
         $this->dumpPath = $dumpPath;
+        $this->binaries = $binaries;
+        
     }
         
 }

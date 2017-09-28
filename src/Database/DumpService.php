@@ -18,14 +18,14 @@ class DumpService extends DatabaseService
     public function dump()
     {
         //Get list of tables
-        $command = sprintf('/usr/bin/mysql --user="%s" --password="%s" --host="%s" "%s" -e "show tables;"',
+        $args = sprintf('--user="%s" --password="%s" --host="%s" "%s" -e "show tables;"',
             $this->connection->getUserName(),
             $this->connection->getPassword(),
             $this->connection->getHostName(),
             $this->connection->getDatabase()
         );
-        
-        $process = new Process($command);
+
+        $process = new Process($this->binaries['mysqldump'].' '.$args);
         $process->run();
         $response =  $process->getOutput();
 

@@ -25,7 +25,7 @@ class RestoreService extends DatabaseService
         foreach ($files as $file){
             
             //Get list of tables
-            $command = sprintf('/usr/bin/mysql --user="%s" --password="%s" --host="%s" "%s" < "%s"',
+            $args = sprintf('--user="%s" --password="%s" --host="%s" "%s" < "%s"',
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),
@@ -33,7 +33,7 @@ class RestoreService extends DatabaseService
                 $this->dumpPath.'/'.$file
             );
 
-            $process = new Process($command);
+            $process = new Process($this->binaries['mysql'].' '.$args);
             $process->run();
 
         }

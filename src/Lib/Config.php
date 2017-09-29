@@ -35,20 +35,18 @@ class Config
      * @param string $fileName
      * @return void
      */
-    private function parseConfig($fileName)
+    private function parseConfig($file)
     {
-        $configFilePath = __DIR__.'/../../config/'.$fileName;
-
-        if (!file_exists($configFilePath)) {
+        if (!file_exists($file)) {
             throw new \Exception('The config file does not exist!');
         }
 
-        $this->parsedConfig = Yaml::parse(file_get_contents($configFilePath));
+        $this->parsedConfig = Yaml::parse(file_get_contents($file));
     }
 
 
     /**
-     * Get congig item
+     * Get config item
      *
      * @param string $param
      * @return mixed

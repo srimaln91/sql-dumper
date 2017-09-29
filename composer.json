@@ -24,5 +24,6 @@
             "type": "vcs",
             "url": "https://github.com/srimaln91/sql-dumper.git"
         }
-    ]
+    ],
+    "bin": ["bin/application"]
 }

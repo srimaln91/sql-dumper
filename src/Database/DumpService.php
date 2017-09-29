@@ -18,7 +18,8 @@ class DumpService extends DatabaseService
     public function dump()
     {
         //Get list of tables
-        $args = sprintf('--user="%s" --password="%s" --host="%s" "%s" -e "show tables;"',
+        $args = sprintf(
+            '--user="%s" --password="%s" --host="%s" "%s" -e "show tables;"',
             $this->connection->getUserName(),
             $this->connection->getPassword(),
             $this->connection->getHostName(),
@@ -44,7 +45,7 @@ class DumpService extends DatabaseService
         //     return false;
         // }
         
-        foreach($tables as $table){
+        foreach ($tables as $table) {
             
             $args = sprintf(
                 '--user="%s" --password="%s" --host="%s" --lock-all-tables --skip-dump-date "%s" "%s" > "%s"',

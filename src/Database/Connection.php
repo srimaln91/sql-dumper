@@ -135,5 +135,4 @@ class Connection
     {
         $this->password = $password;
     }
-
 }

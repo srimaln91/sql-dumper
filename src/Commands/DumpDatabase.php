@@ -9,7 +9,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use App\Database\Connection;
 use App\Database\DumpService;
 
-class DumpDatabase extends Command 
+class DumpDatabase extends Command
 {
     /**
      * @var App\Lib\Config
@@ -57,17 +57,20 @@ class DumpDatabase extends Command
     {
         $config = $this->config->get('database.password');
 
-        if(!file_exists($this->config->get('directory.db'))){
+        if (!file_exists($this->config->get('directory.db'))) {
             mkdir($this->config->get('directory.db'));
         }
 
-        $dumpService = new DumpService($this->connection, $this->config->get('binaries'), $this->config->get('directory.db'));
+        $dumpService = new DumpService(
+            $this->connection,
+            $this->config->get('binaries'),
+            $this->config->get('directory.db')
+        );
         
-        try{
+        try {
             $dumpService->dump();
             $output->writeln("<info>Successfully created a backup</info>");
-        }
-        catch (Exception $e){
+        } catch (Exception $e) {
             $output->writeln("<error>Operation Unsuccessful</error>");
         }
 

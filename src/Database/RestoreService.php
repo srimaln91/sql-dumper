@@ -17,15 +17,16 @@ class RestoreService extends DatabaseService
         //Get .sql files
         $files = FileSystem::getDirectory($this->dumpPath);
 
-        if( false == $files){
+        if (false == $files) {
             throw new EmptyBackupDirectoryException('No .sql files found in the dorectory!');
             return;
         }
 
-        foreach ($files as $file){
+        foreach ($files as $file) {
             
             //Get list of tables
-            $args = sprintf('--user="%s" --password="%s" --host="%s" "%s" < "%s"',
+            $args = sprintf(
+                '--user="%s" --password="%s" --host="%s" "%s" < "%s"',
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),

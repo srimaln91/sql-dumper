@@ -8,7 +8,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
 /**
  * A class to facilitate access to the configuration values
  */
-class Config 
+class Config
 {
 
     /**
@@ -55,14 +55,14 @@ class Config
      */
     public function get($param = null)
     {
-        if ($param != null){
+        if ($param != null) {
 
             $data = $this->parsedConfig;
             $items = explode('.', $param);
 
-            foreach ($items as $item){
+            foreach ($items as $item) {
 
-                if (!array_key_exists($item, $data)){
+                if (!array_key_exists($item, $data)) {
                     return false;
                 }
 

@@ -7,7 +7,8 @@ use DirectoryIterator;
 /**
  * Filesystem helper
  */
-class FileSystem {
+class FileSystem
+{
     
     /**
      * Check if the folder is empty
@@ -17,7 +18,7 @@ class FileSystem {
      */
     public static function isDirEmpty($path)
     {
-        if (count(\scandir($path)) == 2){
+        if (count(\scandir($path)) == 2) {
             return true;
         }
 
@@ -53,7 +54,7 @@ class FileSystem {
             }
         }
 
-        if (empty($fileArray)){
+        if (empty($fileArray)) {
 
             return false;
 
@@ -61,5 +62,4 @@ class FileSystem {
 
         return $fileArray;
     }
-
 }

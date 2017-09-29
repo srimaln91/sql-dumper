@@ -7,7 +7,7 @@ use Symfony\Component\Process\ProcessBuilder;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Runner 
+class Runner
 {
 
     private $processBuilder;

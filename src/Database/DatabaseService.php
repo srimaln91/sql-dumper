@@ -27,7 +27,7 @@ class DatabaseService
      * @param Connection $connection
      * @param string $dumpPath
      */
-    public function __construct(Connection $connection, Array $binaries, $dumpPath)
+    public function __construct(Connection $connection, array $binaries, $dumpPath)
     {
 
         $this->connection = $connection;
@@ -35,5 +35,4 @@ class DatabaseService
         $this->binaries = $binaries;
         
     }
-        
 }

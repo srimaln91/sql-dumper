@@ -58,19 +58,22 @@ class RestoreDatabase extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 
-        if (FileSystem::isDirEmpty($this->config->get('directory.db'))){
+        if (FileSystem::isDirEmpty($this->config->get('directory.db'))) {
 
             $output->writeln("<error>Dump directory is empty!</error>");
             return;
         }
 
-        $restoreService = new RestoreService($this->connection, $this->config->get('binaries'), $this->config->get('directory.db'));
+        $restoreService = new RestoreService(
+            $this->connection,
+            $this->config->get('binaries'),
+            $this->config->get('directory.db')
+        );
         
-        try{
+        try {
             $restoreService->restore();
             $output->writeln("<info>Successfully restored.</info>");
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             $output->writeln("<error>{ $e->getMessage() }</error>");
         }
     }

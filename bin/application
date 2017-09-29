@@ -39,7 +39,7 @@ $container = new Container();
 $container['config'] = function ($container) {
 
     $configs = [
-        'config.yml',
+        '/config.yml',
         '/config/config.yml',
     ];
 

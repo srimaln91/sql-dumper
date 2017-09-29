@@ -1,5 +1,5 @@
 {
-    "name": "srimaln91/wp-git",
+    "name": "srimaln91/sql-dumper",
     "description": "A PHP console application to execute batch of shell commands to versioning wordpress database and source code",
     "license": "GPL",
     "authors": [
@@ -22,7 +22,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/srimaln91/wp-db-backup"
+            "url": "https://github.com/srimaln91/sql-dumper.git"
         }
     ]
 }

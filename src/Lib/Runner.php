@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Lib;
+namespace DBDump\Lib;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\ProcessBuilder;
@@ -24,14 +24,14 @@ class Runner
     public function run()
     {
         $process = $this->processBuilder->getProcess();
-        
+
         try {
 
             $process->mustRun();
             $this->output->writeln($process->getOutput());
 
         } catch (ProcessFailedException $e) {
-            
+
             $this->output->writeln('<error>'.$e->getMessage().'</error>');
 
         }

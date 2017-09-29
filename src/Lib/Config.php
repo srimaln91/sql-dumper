@@ -1,5 +1,5 @@
 <?php
-namespace App\Lib;
+namespace DBDump\Lib;
 
 use Pimple\Container;
 use Symfony\Component\Yaml\Yaml;

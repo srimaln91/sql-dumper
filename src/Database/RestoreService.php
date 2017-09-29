@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Database;
+namespace DBDump\Database;
 
 use Symfony\Component\Process\Process;
-use App\Exception\EmptyDatabaseException;
-use App\Exception\NonEmptyDumpFolderException;
-use App\Lib\FileSystem;
-use App\Database\DatabaseService;
-use App\Exception\EmptyBackupDirectoryException;
+use DBDump\Exception\EmptyDatabaseException;
+use DBDump\Exception\NonEmptyDumpFolderException;
+use DBDump\Lib\FileSystem;
+use DBDump\Database\DatabaseService;
+use DBDump\Exception\EmptyBackupDirectoryException;
 
 class RestoreService extends DatabaseService
 {
@@ -23,7 +23,7 @@ class RestoreService extends DatabaseService
         }
 
         foreach ($files as $file) {
-            
+
             //Get list of tables
             $args = sprintf(
                 '--user="%s" --password="%s" --host="%s" "%s" < "%s"',

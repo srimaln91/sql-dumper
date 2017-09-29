@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exception;
+namespace DBDump\Exception;
 
-use App\Exception\MysqlDumpException;
+use DBDump\Exception\MysqlDumpException;
 
 class NonEmptyDumpFolderException extends MysqlDumpException
 {

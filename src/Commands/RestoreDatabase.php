@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Commands;
+namespace DBDump\Commands;
 
 use Pimple\Container;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use App\Database\Connection;
-use App\Database\RestoreService;
-use App\Lib\FileSystem;
+use DBDump\Database\Connection;
+use DBDump\Database\RestoreService;
+use DBDump\Lib\FileSystem;
 
 class RestoreDatabase extends Command
 {
     /**
-     * @var App\Lib\Config
+     * @var DBDump\Lib\Config
      */
     protected $config;
 
 
     /**
-     * @var App\Database\Connection
+     * @var DBDump\Database\Connection
      */
     protected $connection;
 
@@ -69,7 +69,7 @@ class RestoreDatabase extends Command
             $this->config->get('binaries'),
             $this->config->get('directory.db')
         );
-        
+
         try {
             $restoreService->restore();
             $output->writeln("<info>Successfully restored.</info>");

@@ -1,5 +1,5 @@
 <?php
-namespace App\Database;
+namespace DBDump\Database;
 
 class Connection
 {
@@ -15,7 +15,7 @@ class Connection
      */
     private $port = 3306;
 
-    
+
     /**
      * @var string
      */

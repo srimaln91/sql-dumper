@@ -16,7 +16,13 @@
     },
     "autoload": {
         "psr-4": { 
-            "App\\": "src/" 
+            "DBDump\\": "src/"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/srimaln91/wp-db-backup"
+        }
+    ]
 }

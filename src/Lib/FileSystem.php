@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Lib;
+namespace DBDump\Lib;
 
 use DirectoryIterator;
 
@@ -9,7 +9,7 @@ use DirectoryIterator;
  */
 class FileSystem
 {
-    
+
     /**
      * Check if the folder is empty
      *

@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Commands;
+namespace DBDump\Commands;
 
 use Pimple\Container;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use App\Database\Connection;
-use App\Database\DumpService;
+use DBDump\Database\Connection;
+use DBDump\Database\DumpService;
 
 class DumpDatabase extends Command
 {
     /**
-     * @var App\Lib\Config
+     * @var DBDump\Lib\Config
      */
     protected $config;
 
     /**
-     * @var App\Database\Connection
+     * @var DBDump\Database\Connection
      */
     protected $connection;
 
@@ -66,7 +66,7 @@ class DumpDatabase extends Command
             $this->config->get('binaries'),
             $this->config->get('directory.db')
         );
-        
+
         try {
             $dumpService->dump();
             $output->writeln("<info>Successfully created a backup</info>");

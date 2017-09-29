@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Database;
+namespace DBDump\Database;
 
-use App\Database\Connection;
+use DBDump\Database\Connection;
 
 class DatabaseService
 {
 
     /**
-     * @var App\Database\Connection
+     * @var DBDump\Database\Connection
      */
     protected $connection;
-    
+
     /**
      * @var string
      */
@@ -33,6 +33,6 @@ class DatabaseService
         $this->connection = $connection;
         $this->dumpPath = $dumpPath;
         $this->binaries = $binaries;
-        
+
     }
 }

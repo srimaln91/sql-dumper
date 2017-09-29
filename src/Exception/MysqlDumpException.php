@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exception;
+namespace DBDump\Exception;
 
 use Exception;
 

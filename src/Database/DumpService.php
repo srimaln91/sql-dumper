@@ -1,11 +1,11 @@
 <?php
-namespace App\Database;
+namespace DBDump\Database;
 
 use Symfony\Component\Process\Process;
-use App\Exception\EmptyDatabaseException;
-use App\Exception\NonEmptyDumpFolderException;
-use App\Lib\FileSystem;
-use App\Database\DatabaseService;
+use DBDump\Exception\EmptyDatabaseException;
+use DBDump\Exception\NonEmptyDumpFolderException;
+use DBDump\Lib\FileSystem;
+use DBDump\Database\DatabaseService;
 
 class DumpService extends DatabaseService
 {
@@ -32,7 +32,7 @@ class DumpService extends DatabaseService
 
         //Slice command response to array of database tables
         $tables = array_slice(explode(PHP_EOL, $response), 1, -1);
-        
+
         //Check for empty databases
         if (empty($tables)) {
             throw new EmptyDatabaseException("There are no tables in the database.");
@@ -44,9 +44,9 @@ class DumpService extends DatabaseService
         //     throw new NonEmptyDumpFolderException($this->dumpPath." is not empty.");
         //     return false;
         // }
-        
+
         foreach ($tables as $table) {
-            
+
             $args = sprintf(
                 '--user="%s" --password="%s" --host="%s" --lock-all-tables --skip-dump-date "%s" "%s" > "%s"',
                 $this->connection->getUserName(),

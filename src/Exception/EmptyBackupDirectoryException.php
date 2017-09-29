@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Exception;
+namespace DBDump\Exception;
 
 class EmptyBackupDirectoryException extends Exception
 {
-    
+
 }

@@ -27,7 +27,7 @@ class RestoreService extends DatabaseService
             //Process only .sql files
             $info = pathinfo($this->dumpPath.'/'.$file);
             if ($info["extension"] != "sql") {
-                break;
+                continue;
             }
 
             //Get list of tables

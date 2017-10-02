@@ -48,7 +48,7 @@ class DumpService extends DatabaseService
         foreach ($tables as $table) {
 
             $args = sprintf(
-                "--user='%s' --password='%s' --host='%s' --lock-all-tables --skip-dump-date '%s' '%s' > '%s'",
+                "--user='%s' --password='%s' --host='%s' --lock-all-tables --skip-dump-date --skip-comments '%s' '%s' > '%s'",
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),

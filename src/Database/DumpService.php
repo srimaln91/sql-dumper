@@ -19,11 +19,11 @@ class DumpService extends DatabaseService
     {
         //Get list of tables
         $args = sprintf(
-            "--user='%s' --password='%s' --host='%s' '%s' -e 'show tables;'",
-            $this->connection->getUserName(),
-            $this->connection->getPassword(),
-            $this->connection->getHostName(),
-            $this->connection->getDatabase()
+            '--user=%s --password=%s --host=%s %s -e "show tables;"',
+            escapeshellarg($this->connection->getUserName()),
+            escapeshellarg($this->connection->getPassword()),
+            escapeshellarg($this->connection->getHostName()),
+            escapeshellarg($this->connection->getDatabase())
         );
 
         $process = new Process($this->binaries['mysql'].' '.$args);
@@ -48,13 +48,13 @@ class DumpService extends DatabaseService
         foreach ($tables as $table) {
 
             $args = sprintf(
-                "--user='%s' --password='%s' --host='%s' --lock-all-tables --skip-dump-date --skip-comments '%s' '%s' > '%s'",
-                $this->connection->getUserName(),
-                $this->connection->getPassword(),
-                $this->connection->getHostName(),
-                $this->connection->getDatabase(),
-                $table,
-                $this->dumpPath.$table.'.sql'
+                '--user=%s --password=%s --host=%s --lock-all-tables --skip-dump-date --skip-comments %s %s > %s',
+                escapeshellarg($this->connection->getUserName()),
+                escapeshellarg($this->connection->getPassword()),
+                escapeshellarg($this->connection->getHostName()),
+                escapeshellarg($this->connection->getDatabase()),
+                escapeshellarg($table),
+                escapeshellarg($this->dumpPath.$table.'.sql')
             );
 
             $process = new Process($this->binaries['mysqldump'].' '.$args);

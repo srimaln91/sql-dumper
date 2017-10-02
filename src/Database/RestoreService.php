@@ -25,7 +25,7 @@ class RestoreService extends DatabaseService
         foreach ($files as $file) {
 
             //Process only .sql files
-            $info = pathinfo($this->dumpPath.'/'.$file);
+            $info = pathinfo($this->dumpPath . DIRECTORY_SEPARATOR . $file);
             if ($info["extension"] != "sql") {
                 continue;
             }
@@ -33,11 +33,11 @@ class RestoreService extends DatabaseService
             //Get list of tables
             $args = sprintf(
                 "--user=%s --password=%s --host=%s %s < %s",
-                $this->connection->getUserName(),
-                $this->connection->getPassword(),
-                $this->connection->getHostName(),
-                $this->connection->getDatabase(),
-                $this->dumpPath.'/'.$file
+                escapeshellarg($this->connection->getUserName()),
+                escapeshellarg($this->connection->getPassword()),
+                escapeshellarg($this->connection->getHostName()),
+                escapeshellarg($this->connection->getDatabase()),
+                $this->dumpPath . DIRECTORY_SEPARATOR . $file
             );
 
             $process = new Process($this->binaries['mysql'].' '.$args);

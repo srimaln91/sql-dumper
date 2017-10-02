@@ -32,7 +32,7 @@ class RestoreService extends DatabaseService
 
             //Get list of tables
             $args = sprintf(
-                "--user='%s' --password='%s' --host='%s' '%s' < '%s'",
+                "--user=%s --password=%s --host=%s %s < %s",
                 $this->connection->getUserName(),
                 $this->connection->getPassword(),
                 $this->connection->getHostName(),

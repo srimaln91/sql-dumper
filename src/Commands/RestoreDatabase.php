@@ -46,7 +46,7 @@ class RestoreDatabase extends Command
         $this->setName('db:restore')
         ->setDescription("Restore a database dump")
         ->setHelp("This command allows you to restore a database dump")
-        ->addArgument('db_dir', InputArgument::REQUIRED, 'Please tell me where your db backup files stored?');
+        ->addArgument('db_dir', InputArgument::OPTIONAL, 'Please tell me where your db backup files stored?');
     }
 
 
@@ -59,7 +59,10 @@ class RestoreDatabase extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        //Get backup directory
         $dbBackupDir = $input->getArgument('db_dir');
+        $dbBackupDir = ($dbBackupDir == null) ? $this->config->get('directory.db') : $dbBackupDir ;
+
         if (FileSystem::isDirEmpty($dbBackupDir)) {
 
             $output->writeln("<error>Dump directory is empty!</error>");

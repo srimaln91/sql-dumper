@@ -21,7 +21,7 @@ Please follow below steps to configure this application.
 
 ### Configuration
 
-You need to create a config.yml file in youe project root. Below is the default config file.
+You need to create a config.yml file in your project root. Below is the default config file.
 
 ```
 ---
@@ -44,7 +44,7 @@ You can execute below command to create a new dump or update an existing dump di
 
 ``` vendor/bin/application db:dump ```
 
-### How to generate a database dump
+### How to restore a database dump
 
 Please use below command
 

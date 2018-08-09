@@ -2,9 +2,9 @@
 
 namespace DBDump\Exception;
 
-use DBDump\Exception\MysqlDumpException;
+use DBDump\Exception\DumperException;
 
-class NonEmptyDumpFolderException extends MysqlDumpException
+class NonEmptyDumpFolderException extends DumperException
 {
 
 }

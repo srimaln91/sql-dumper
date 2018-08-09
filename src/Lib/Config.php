@@ -38,12 +38,38 @@ class Config
     private function parseConfig($file)
     {
         if (!file_exists($file)) {
-            throw new \Exception('The config file does not exist!');
+            throw new ParseException('The config file does not exist!');
         }
 
-        $this->parsedConfig = Yaml::parse(file_get_contents($file));
+        try {
+            $config= Yaml::parse(file_get_contents($file));
+        }
+        catch(Exception $e) {
+            throw new ParseException('Invalid YAML syntax.');
+        }
+
+        if( $this->validateConfig($config) ) {
+            $this->parsedConfig = $config;
+        }
+
     }
 
+/**
+ * Validate config parameters
+ *
+ * @param Array $parsedConfig
+ * @return Boolean
+ */
+    private function validateConfig($parsedConfig)
+    {
+        //validate file paths
+        if( !realpath($parsedConfig['directory']['db']) ) {
+            throw new ParseException("Invalid config item : directory.db");
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * Get config item
